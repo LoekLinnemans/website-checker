@@ -1,10 +1,19 @@
-2024/09/16 13:32:33 &{200 OK 200 HTTP/2.0 2 0 map[Cache-Control:[public, s-maxage=1] Content-Security-Policy:[frame-ancestors 'self'] Content-Type:[text/html; charset=utf-8] Date:[Mon, 16 Sep 2024 11:32:33 GMT] Etag:["nfotjk5nz3fi71"] Referrer-Policy:[same-origin] Server:[nginx] Strict-Transport-Security:[max-age=31536000] Vary:[Accept-Encoding] Via:[1.1 8be6e843d0ee8ff03a0a07d811ce5bf8.cloudfront.net (CloudFront)] X-Amz-Cf-Id:[2O0__4Q87FFomVZQCqNVf4tuPSG_GUEHjLEHbDOYkRf4tTU0lXlFmw==] X-Amz-Cf-Pop:[AMS58-P3] X-Cache:[Hit from cloudfront] X-Content-Type-Options:[nosniff] X-Powered-By:[Next.js] X-Proxy-Cache:[HIT] X-Proxy-Http-Date:[Mon, 16 Sep 2024 11:32:32 GMT]] 0xc000182870 -1 [] false true map[] 0xc000076280 0xc00008c0c0}
-2024/09/16 13:32:55 &{200 OK 200 HTTP/2.0 2 0 map[Cache-Control:[public, s-maxage=1] Content-Security-Policy:[frame-ancestors 'self'] Content-Type:[text/html; charset=utf-8] Date:[Mon, 16 Sep 2024 11:32:55 GMT] Etag:["3b3i5bxol2fi6w"] Referrer-Policy:[same-origin] Server:[nginx] Strict-Transport-Security:[max-age=31536000] Vary:[Accept-Encoding] Via:[1.1 1d14130822f7563ef82bba830d521f72.cloudfront.net (CloudFront)] X-Amz-Cf-Id:[33ipxXu63PLdSApTKdjuQcMObGSWaBtKa6r5H09SM8t7pf1kVPCTpA==] X-Amz-Cf-Pop:[AMS58-P3] X-Cache:[Hit from cloudfront] X-Content-Type-Options:[nosniff] X-Powered-By:[Next.js] X-Proxy-Cache:[HIT] X-Proxy-Http-Date:[Mon, 16 Sep 2024 11:32:43 GMT]] 0xc00008dce0 -1 [] false true map[] 0xc000076280 0xc0000b8a80}
-2024/09/16 14:38:36 Get "www.transunion.com": unsupported protocol scheme ""
-2024/09/30 09:32:27 Get "uidai.gov.in": unsupported protocol scheme ""
-2024/09/30 09:33:16 Get "nos.nl": unsupported protocol scheme ""
-2024/09/30 09:33:36 &{200 OK 200 HTTP/2.0 2 0 map[Cache-Control:[public, s-maxage=1] Content-Security-Policy:[frame-ancestors 'self'] Content-Type:[text/html; charset=utf-8] Date:[Mon, 30 Sep 2024 07:33:36 GMT] Etag:["zc9nkwctn9ewpx"] Referrer-Policy:[same-origin] Server:[nginx] Strict-Transport-Security:[max-age=31536000] Vary:[Accept-Encoding] Via:[1.1 852513de831fa3235a0fcf6b4f0116c4.cloudfront.net (CloudFront)] X-Amz-Cf-Id:[tQGw9kxg3Zt4RVmHDgCwGbc5vId9PDoCTM1EeYAXNTRtsmH7jzI12A==] X-Amz-Cf-Pop:[AMS58-P3] X-Cache:[Hit from cloudfront] X-Content-Type-Options:[nosniff] X-Powered-By:[Next.js] X-Proxy-Cache:[HIT] X-Proxy-Http-Date:[Mon, 30 Sep 2024 07:33:34 GMT]] 0xc000107ef0 -1 [] false true map[] 0xc000108000 0xc00013aa80}
-2024/09/30 09:35:46 Get "http://nonexistent.example.com": dial tcp: lookup nonexistent.example.com: no such host
-2024/09/30 09:36:02 Get "http://localhost:9999": dial tcp [::1]:9999: connectex: No connection could be made because the target machine actively refused it.
-2024/09/30 09:37:43 &{200 OK 200 HTTP/2.0 2 0 map[Cache-Control:[no-store, no-cache, must-revalidate] Content-Type:[text/html; charset=utf-8] Date:[Mon, 30 Sep 2024 07:37:43 GMT] Expires:[Thu, 19 Nov 1981 08:52:00 GMT] Pragma:[no-cache] Server:[nginx] Set-Cookie:[DokuWiki=0cm5a6u4ou4ff6lno4c97eje8a; path=/; secure; HttpOnly; SameSite=Lax DW7fa065a06cb74b536c124cfbe56ac6d3=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT; Max-Age=0; path=/; secure; HttpOnly; SameSite=Lax] Strict-Transport-Security:[max-age=31536000] Vary:[Cookie] X-Ua-Compatible:[IE=edge,chrome=1]] {0xc000002300} -1 [] false false map[] 0xc000076280 0xc000000240}
-2024/09/30 09:38:50 Get "https://gnu.org/": dial tcp 209.51.188.116:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2024/09/30 12:59:21 Websites:
+2024/09/30 12:59:21 https://www.nasa.gov/
+2024/09/30 12:59:21 https://www.nasa.gov/
+2024/09/30 12:59:21 https://www.qrz.com/
+2024/09/30 12:59:36 Websites:
+2024/09/30 12:59:36 https://www.nasa.gov/
+2024/09/30 12:59:36 https://www.nasa.gov/
+2024/09/30 12:59:36 https://www.qrz.com/
+2024/09/30 13:19:57 Get "websites:": unsupported protocol scheme "websites"
+2024/09/30 13:20:30 Get "websites:": unsupported protocol scheme "websites"
+2024/09/30 13:21:51 Websites:
+2024/09/30 13:21:51 https://www.nasa.gov/
+2024/09/30 13:21:51 https://www.qrz.com/
+2024/09/30 13:22:49 Websites:
+2024/09/30 13:22:49 Get "websites:": unsupported protocol scheme "websites"
+2024/09/30 13:24:21 https://www.nasa.gov/
+2024/09/30 13:24:21 &{200 OK 200 HTTP/2.0 2 0 map[Accept-Ranges:[bytes] Cache-Control:[max-age=300, must-revalidate] Content-Type:[text/html; charset=UTF-8] Date:[Mon, 30 Sep 2024 11:24:21 GMT] Host-Header:[a9130478a60e5f9135f765b23f26593b] Link:[<https://www.nasa.gov/wp-json/>; rel="https://api.w.org/" <https://www.nasa.gov/wp-json/wp/v2/pages/128943>; rel="alternate"; type="application/json" <https://www.nasa.gov/>; rel=shortlink] Server:[nginx] Strict-Transport-Security:[max-age=31536000;includeSubdomains;preload] Vary:[Accept-Encoding] X-Cache:[STALE] X-Launch-Status:[Go Flight!] X-Rq:[ams8 111 254 443]] 0xc00009c240 -1 [] false true map[] 0xc000076280 0xc000000240}
+2024/09/30 13:24:21 https://www.qrz.com/
+2024/09/30 13:24:21 &{200 OK 200 HTTP/1.1 1 1 map[Content-Type:[text/html;charset=UTF-8] Date:[Mon, 30 Sep 2024 11:24:21 GMT] Referrer-Policy:[origin] Server:[Apache/2.4.29 (Ubuntu)] Strict-Transport-Security:[max-age=3600] Vary:[Accept-Encoding] X-Content-Type-Options:[nosniff] X-Frame-Options:[SAMEORIGIN]] 0xc00030e020 -1 [] true true map[] 0xc00022c000 0xc000242180}

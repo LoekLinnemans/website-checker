@@ -1,11 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func init() {
@@ -20,12 +22,41 @@ func init() {
 }
 
 func main() {
-	var url string
-	fmt.Print("Enter the Website: ")
-	fmt.Scan(&url)
-	resp, err := http.Get(url)
+	websites, err := Readconfig("config.txt")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Could not read websites from config.txt:", err)
 	}
-	log.Println(resp)
+
+	for _, url := range websites {
+		log.Println(url)
+		fmt.Scan(url)
+		resp, err := http.Get(url)
+		if err != nil {
+			log.Fatal(err)
+		}
+		log.Println(resp)
+	}
+}
+
+func Readconfig(configFile string) ([]string, error) {
+	var websites []string
+	config, err := os.Open(configFile)
+	if err != nil {
+		return nil, err
+	}
+	defer config.Close()
+
+	scanner := bufio.NewScanner(config)
+
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		if line != "" {
+			websites = append(websites, line)
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+	return websites, nil
 }
