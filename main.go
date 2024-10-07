@@ -17,6 +17,20 @@ func init() {
 	if err != nil {
 		log.Printf("couldn't create logfile: %v", err)
 	}
+	defer logFile.Close()
+
+	resultfile, err := os.OpenFile("result.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Printf("couldn't create resultfile: %v", err)
+	}
+	defer resultfile.Close()
+
+	configfile, err := os.OpenFile("config.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Printf("couldn't create configfile: %v", err)
+	}
+	defer configfile.Close()
+
 	log.SetOutput(os.Stdout)
 
 	writer := io.MultiWriter(os.Stdout, logFile)
@@ -76,10 +90,7 @@ func writeresult(url string, statuscode int) {
 	resultfile, err := os.OpenFile("result.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Printf("Error opening result.txt: %v", err)
-		return
 	}
-	defer resultfile.Close()
-
 	var result string
 	if statuscode == 200 {
 		result = fmt.Sprintf("Status code for %s: %d - site reachable\n", url, statuscode)
