@@ -21,5 +21,9 @@
 go.work
 go.work.sum
 
+# Ignore log and result files
+log.txt
+result.txt
+
 # env file
 .env
