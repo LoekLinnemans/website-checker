@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 )
 
 func init() {
@@ -15,6 +16,7 @@ func init() {
 	if err != nil {
 		log.Println("couldn't create logfile", err)
 	}
+	log.SetOutput(os.Stdout)
 
 	writer := io.MultiWriter(os.Stdout, logFile)
 	log.SetOutput(writer)
@@ -27,6 +29,10 @@ func main() {
 		log.Fatal("Could not read websites from config.txt:", err)
 	}
 
+	if err := validateConfig(websites); err != nil {
+		log.Fatal("Invalid config file:", err)
+	}
+
 	for _, url := range websites {
 		if resp, err := http.Get(url); err != nil {
 			log.Println("Error:", err)
@@ -34,6 +40,9 @@ func main() {
 			writeresult(url, resp.StatusCode)
 		}
 	}
+
+	log.Println("Monitoring complete. Keeping the container alive...")
+	time.Sleep(24 * time.Hour)
 
 }
 
@@ -68,8 +77,25 @@ func writeresult(url string, statuscode int) {
 	}
 	defer resultfile.Close()
 
-	result := fmt.Sprintf("Status code for %s: %d\n", url, statuscode)
+	var result string
+	if statuscode == 200 {
+		result = fmt.Sprintf("Status code for %s: %d - site reachable\n", url, statuscode)
+	} else {
+		result = fmt.Sprintf("Status code for %s: %d - site not reachable\n", url, statuscode)
+	}
+
 	if _, err := resultfile.WriteString(result); err != nil {
 		log.Println("Error writing to result.txt:", err)
 	}
+}
+func validateConfig(websites []string) error {
+	for _, url := range websites {
+		if !strings.HasPrefix(url, "http://") && !strings.HasPrefix(url, "https://") {
+			return fmt.Errorf("invalid URL format: %s", url)
+		}
+		if !strings.Contains(url, ".") {
+			return fmt.Errorf("invalid URL format, missing domain: %s", url)
+		}
+	}
+	return nil
 }
