@@ -25,26 +25,28 @@ func init() {
 }
 
 func main() {
-	websites, err := Readconfig("config.txt")
-	if err != nil {
-		log.Fatalf("Could not read websites from config.txt: %v", err)
-	}
-
-	if err := validateConfig(websites); err != nil {
-		log.Fatalf("Invalid config file: %v", err)
-	}
-
-	for _, url := range websites {
-		if resp, err := http.Get(url); err != nil {
-			log.Printf("Error reaching %s: %v", url, err)
-			writeresult(url, 0)
-		} else {
-			writeresult(url, resp.StatusCode)
+	for {
+		websites, err := Readconfig("config.txt")
+		if err != nil {
+			log.Fatalf("Could not read websites from config.txt: %v", err)
 		}
-	}
 
-	log.Printf("Monitoring complete. Keeping the container alive...")
-	time.Sleep(24 * time.Hour)
+		if err := validateConfig(websites); err != nil {
+			log.Fatalf("Invalid config file: %v", err)
+		}
+
+		for _, url := range websites {
+			if resp, err := http.Get(url); err != nil {
+				log.Printf("Error reaching %s: %v", url, err)
+				writeresult(url, 0)
+			} else {
+				writeresult(url, resp.StatusCode)
+			}
+		}
+
+		log.Printf("Monitoring complete. Restarting in 5 minutes...")
+		time.Sleep(5 * time.Minute)
+	}
 }
 
 func Readconfig(configFile string) ([]string, error) {
