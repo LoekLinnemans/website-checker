@@ -44,8 +44,8 @@ func main() {
 			}
 		}
 
-		log.Printf("Monitoring complete. Restarting in 5 minutes...")
-		time.Sleep(5 * time.Minute)
+		log.Printf("Monitoring complete. Restarting in 1 minutes...")
+		time.Sleep(1 * time.Minute)
 	}
 }
 
