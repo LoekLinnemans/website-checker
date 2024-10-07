@@ -36,7 +36,8 @@ func main() {
 
 	for _, url := range websites {
 		if resp, err := http.Get(url); err != nil {
-			log.Printf("Error: %v", err)
+			log.Printf("Error reaching %s: %v", url, err)
+			writeresult(url, 0)
 		} else {
 			writeresult(url, resp.StatusCode)
 		}
@@ -44,7 +45,6 @@ func main() {
 
 	log.Printf("Monitoring complete. Keeping the container alive...")
 	time.Sleep(24 * time.Hour)
-
 }
 
 func Readconfig(configFile string) ([]string, error) {
@@ -81,6 +81,8 @@ func writeresult(url string, statuscode int) {
 	var result string
 	if statuscode == 200 {
 		result = fmt.Sprintf("Status code for %s: %d - site reachable\n", url, statuscode)
+	} else if statuscode == 0 {
+		result = fmt.Sprintf("Error reaching %s - host not reachable\n", url)
 	} else {
 		result = fmt.Sprintf("Status code for %s: %d - site not reachable\n", url, statuscode)
 	}
@@ -89,8 +91,9 @@ func writeresult(url string, statuscode int) {
 		log.Printf("Error writing to result.txt: %v", err)
 	}
 }
+
 func validateConfig(websites []string) error {
-	var urlRegex = regexp.MustCompile(`^(http|https)://www\.[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
+	var urlRegex = regexp.MustCompile(`^(http|https)://www\.[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/.*)?$`)
 
 	for _, url := range websites {
 		if !urlRegex.MatchString(url) {

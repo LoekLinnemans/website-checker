@@ -15,3 +15,11 @@ Status code for https://www.nasa.gov/: 200 - site reachable
 Status code for https://www.qrz.com/: 200 - site reachable
 Status code for https://nos.com/: 200 - site reachable
 Status code for https://warcraftlogs.com/: 200 - site reachable
+Status code for https://www.nasa.gov: 200 - site reachable
+Status code for https://www.qrz.com: 200 - site reachable
+Status code for https://www.nos.com: 200 - site reachable
+Status code for https://www.warcraftlogs.com: 200 - site reachable
+Status code for https://www.nasa.gov: 200 - site reachable
+Status code for https://www.qrz.com: 200 - site reachable
+Status code for https://www.nos.com: 200 - site reachable
+Status code for https://www.warcraftlogs.com: 200 - site reachable
