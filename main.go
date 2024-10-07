@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -14,7 +15,7 @@ import (
 func init() {
 	logFile, err := os.OpenFile("log.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
-		log.Println("couldn't create logfile", err)
+		log.Printf("couldn't create logfile: %v", err)
 	}
 	log.SetOutput(os.Stdout)
 
@@ -26,22 +27,22 @@ func init() {
 func main() {
 	websites, err := Readconfig("config.txt")
 	if err != nil {
-		log.Fatal("Could not read websites from config.txt:", err)
+		log.Fatalf("Could not read websites from config.txt: %v", err)
 	}
 
 	if err := validateConfig(websites); err != nil {
-		log.Fatal("Invalid config file:", err)
+		log.Fatalf("Invalid config file: %v", err)
 	}
 
 	for _, url := range websites {
 		if resp, err := http.Get(url); err != nil {
-			log.Println("Error:", err)
+			log.Printf("Error: %v", err)
 		} else {
 			writeresult(url, resp.StatusCode)
 		}
 	}
 
-	log.Println("Monitoring complete. Keeping the container alive...")
+	log.Printf("Monitoring complete. Keeping the container alive...")
 	time.Sleep(24 * time.Hour)
 
 }
@@ -72,7 +73,7 @@ func Readconfig(configFile string) ([]string, error) {
 func writeresult(url string, statuscode int) {
 	resultfile, err := os.OpenFile("result.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
-		log.Println("Error opening result.txt:", err)
+		log.Printf("Error opening result.txt: %v", err)
 		return
 	}
 	defer resultfile.Close()
@@ -85,16 +86,15 @@ func writeresult(url string, statuscode int) {
 	}
 
 	if _, err := resultfile.WriteString(result); err != nil {
-		log.Println("Error writing to result.txt:", err)
+		log.Printf("Error writing to result.txt: %v", err)
 	}
 }
 func validateConfig(websites []string) error {
+	var urlRegex = regexp.MustCompile(`^(http|https)://www\.[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
+
 	for _, url := range websites {
-		if !strings.HasPrefix(url, "http://") && !strings.HasPrefix(url, "https://") {
+		if !urlRegex.MatchString(url) {
 			return fmt.Errorf("invalid URL format: %s", url)
-		}
-		if !strings.Contains(url, ".") {
-			return fmt.Errorf("invalid URL format, missing domain: %s", url)
 		}
 	}
 	return nil
