@@ -28,14 +28,13 @@ func main() {
 	}
 
 	for _, url := range websites {
-		log.Println(url)
-		fmt.Scan(url)
-		resp, err := http.Get(url)
-		if err != nil {
-			log.Fatal(err)
+		if resp, err := http.Get(url); err != nil {
+			log.Println("Error:", err)
+		} else {
+			writeresult(url, resp.StatusCode)
 		}
-		log.Println(resp)
 	}
+
 }
 
 func Readconfig(configFile string) ([]string, error) {
@@ -59,4 +58,18 @@ func Readconfig(configFile string) ([]string, error) {
 		return nil, err
 	}
 	return websites, nil
+}
+
+func writeresult(url string, statuscode int) {
+	resultfile, err := os.OpenFile("result.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Println("Error opening result.txt:", err)
+		return
+	}
+	defer resultfile.Close()
+
+	result := fmt.Sprintf("Status code for %s: %d\n", url, statuscode)
+	if _, err := resultfile.WriteString(result); err != nil {
+		log.Println("Error writing to result.txt:", err)
+	}
 }
