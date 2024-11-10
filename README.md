@@ -2,7 +2,7 @@
 
 inleiding 
 
-deze aplliecatie cehcked de beschikbaarheid van websites. het leest een lijst aan urls die in de config.txt bestand staan. vervolgens wordt er in de result.txt aangegeven over je er bij kan of niet. 
+deze aplliecatie checked de beschikbaarheid van websites. het leest een lijst aan urls die in de config.txt bestand staan. vervolgens wordt er in de result.txt aangegeven over je er bij kan of niet. 
 
 bestanden 
 
